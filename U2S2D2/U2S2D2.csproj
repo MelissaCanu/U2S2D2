@@ -183,6 +183,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Pagamenti\CreaPagamenti.cshtml" />
     <Content Include="Views\Dipendenti\CreaDipendenti.cshtml" />
+    <Content Include="Views\Pagamenti\Index.cshtml" />
+    <Content Include="Views\Dipendenti\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
