@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreaDipendenti")
 </p>
 <table class="table">
     <tr>
@@ -58,11 +58,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Mansione)
         </td>
+
+       <!--Aggiungo EditDipendenti-->
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "EditDipendenti", new { id = item.ID }) |
+
         </td>
+        
     </tr>
 }
 
