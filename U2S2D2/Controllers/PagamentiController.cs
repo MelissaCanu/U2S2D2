@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -8,16 +9,16 @@ using System.Web.Mvc;
 using U2S2D2.Models;
 
 namespace U2S2D2.Controllers
-{   
+{
     //CONTROLLER PAGAMENTI
     public class PagamentiController : Controller
     {
-      //apro connessione nell'action result index
-      
-      public ActionResult Index()
-        {  
-           string connectionString = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString();
-           SqlConnection connection = new SqlConnection(connectionString);
+        //apro connessione nell'action result index
+
+        public ActionResult Index()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString();
+            SqlConnection connection = new SqlConnection(connectionString);
 
             //creo una lista di tipo Pagamento chiamata pagamenti
             List<Pagamento> pagamenti = new List<Pagamento>();
@@ -25,7 +26,7 @@ namespace U2S2D2.Controllers
             try
             {
                 connection.Open();
-                string query = "SELECT * FROM Pagamenti";
+                string query = "SELECT * FROM Pagamenti ORDER BY ID DESC"; //modifico la query per visualizzare in ordine decrescente per lo storico pagamenti
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -92,6 +93,45 @@ namespace U2S2D2.Controllers
             }
             //ritorno alla view Index dopo aver inserito i dati nel database e visualizzo la lista aggiornata
             return RedirectToAction("Index");
+        }
+
+        //aggiungo action StoricoPagamenti per restituire la View relativa di StoricoPagamenti.cshtml
+        public ActionResult StoricoPagamenti()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString();
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            List<Pagamento> pagamenti = new List<Pagamento>();
+
+            try
+            {
+                connection.Open();
+                string query = "SELECT * FROM Pagamenti ORDER BY ID DESC";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Pagamento pagamento = new Pagamento
+                    {
+                        ID = Convert.ToInt32(reader["ID"]),
+                        IDDipendente = Convert.ToInt32(reader["ID"]),
+                        PeriodoPagamento = reader["PeriodoPagamento"].ToString(),
+                        AmmontarePagamento = Convert.ToDecimal(reader["AmmontarePagamento"]),
+                        TipoPagamento = reader["TipoPagamento"].ToString()
+                    };
+                    pagamenti.Add(pagamento);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return View(pagamenti);
         }
 
     }
