@@ -1,16 +1,16 @@
 ﻿@model U2S2D2.Models.Dipendente
 
 @{
-    ViewBag.Title = "CreaDipendenti";
+    ViewBag.Title = "Aggiungi nuovo dipendente";
 }
 
-<h2>CreaDipendenti</h2>
+<h2>Aggiungi un nuovo dipendente</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Dipendente</h4>
         <hr />
@@ -75,15 +75,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crea" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

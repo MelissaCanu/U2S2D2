@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<U2S2D2.Models.Pagamento>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pagamenti";
 }
 
-<h2>Index</h2>
+<h2>Storico Pagamenti</h2>
 
 <!--bottone per visualizzare lo storico dei pagamenti ordinato per data registrazione, -->
 <!--ActionLink vuole 3 parametri: testo del link visualizzato nella pagina web, nome dell'action result, nome del controller che contiene l'action result-->
 <p>
-    @Html.ActionLink("Storico Pagamenti", "StoricoPagamenti", "Pagamenti")
+    @Html.ActionLink("Storico Pagamenti", "StoricoPagamenti", "Pagamenti", null, new { @class = "btn btn-secondary" })
 </p>
 <table class="table">
     <tr>

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<U2S2D2.Models.Dipendente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dipendenti";
 }
 
-<h2>Index</h2>
+<h2>Dipendenti</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreaDipendenti")
+    @Html.ActionLink("Aggiungi Nuovo Dipendente", "CreaDipendenti", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -62,8 +62,8 @@
        <!--Aggiungo EditDipendenti-->
 
         <td>
-            @Html.ActionLink("Edit", "EditDipendenti", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "DeleteDipendenti", new { id = item.ID })
+            @Html.ActionLink("Edit", "EditDipendenti", new { id = item.ID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "DeleteDipendenti", new { id = item.ID }, new { @class = "btn btn-danger" })
 
         </td>
         
