@@ -177,8 +177,40 @@ namespace U2S2D2.Controllers
 
             return RedirectToAction("Index");
         }
+        
+        //get action result vuoto per la cancellazione di un dipendente 
+        public ActionResult DeleteDipendenti(int id)
+        {
+          return View();
+        }
 
-  
+        //post actionresult per la cancellazione di un dipendente -> elimina effettivamente il dipendente dal db
+        [HttpPost]
+        public ActionResult DeleteDipendenti(Dipendente dipendente)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString();
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+                string query = "DELETE FROM Dipendenti WHERE ID = @ID";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@ID", dipendente.ID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
     }
     }

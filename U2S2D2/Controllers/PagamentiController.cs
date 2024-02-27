@@ -26,7 +26,7 @@ namespace U2S2D2.Controllers
             try
             {
                 connection.Open();
-                string query = "SELECT * FROM Pagamenti ORDER BY ID DESC"; //modifico la query per visualizzare in ordine decrescente per lo storico pagamenti
+                string query = "SELECT * FROM Pagamenti"; //modifico la query per visualizzare in ordine decrescente per lo storico pagamenti
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -38,7 +38,7 @@ namespace U2S2D2.Controllers
                     {
                         ID = Convert.ToInt32(reader["ID"]),
                         IDDipendente = Convert.ToInt32(reader["IDDipendente"]),
-                        PeriodoPagamento = reader["PeriodoPagamento"].ToString(),
+                        PeriodoPagamento = Convert.ToDateTime(reader["PeriodoPagamento"]).ToString("dd/MM/yyyy"),
                         AmmontarePagamento = Convert.ToDecimal(reader["AmmontarePagamento"]),
                         TipoPagamento = reader["TipoPagamento"].ToString()
 
@@ -106,7 +106,7 @@ namespace U2S2D2.Controllers
             try
             {
                 connection.Open();
-                string query = "SELECT * FROM Pagamenti ORDER BY ID DESC";
+                string query = "SELECT * FROM Pagamenti ORDER BY PeriodoPagamento DESC";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -115,7 +115,7 @@ namespace U2S2D2.Controllers
                     {
                         ID = Convert.ToInt32(reader["ID"]),
                         IDDipendente = Convert.ToInt32(reader["ID"]),
-                        PeriodoPagamento = reader["PeriodoPagamento"].ToString(),
+                        PeriodoPagamento = Convert.ToDateTime(reader["PeriodoPagamento"]).ToString("dd/MM/yyyy"),
                         AmmontarePagamento = Convert.ToDecimal(reader["AmmontarePagamento"]),
                         TipoPagamento = reader["TipoPagamento"].ToString()
                     };

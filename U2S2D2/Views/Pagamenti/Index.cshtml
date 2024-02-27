@@ -6,8 +6,10 @@
 
 <h2>Index</h2>
 
+<!--bottone per visualizzare lo storico dei pagamenti ordinato per data registrazione, -->
+<!--ActionLink vuole 3 parametri: testo del link visualizzato nella pagina web, nome dell'action result, nome del controller che contiene l'action result-->
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Storico Pagamenti", "StoricoPagamenti", "Pagamenti")
 </p>
 <table class="table">
     <tr>
@@ -23,26 +25,28 @@
         <th>
             @Html.DisplayNameFor(model => model.TipoPagamento)
         </th>
-        <th></th>
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDDipendente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PeriodoPagamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AmmontarePagamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoPagamento)
-        </td>
-        
-       
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDDipendente)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PeriodoPagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmmontarePagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPagamento)
+            </td>
+
+
+        </tr>
+    }
 
 </table>

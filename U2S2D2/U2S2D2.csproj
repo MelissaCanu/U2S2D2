@@ -187,6 +187,7 @@
     <Content Include="Views\Dipendenti\Index.cshtml" />
     <Content Include="Views\Pagamenti\StoricoPagamenti.cshtml" />
     <Content Include="Views\Dipendenti\EditDipendenti.cshtml" />
+    <Content Include="Views\Dipendenti\DeleteDipendenti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
